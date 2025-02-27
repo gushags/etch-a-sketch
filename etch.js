@@ -1,9 +1,6 @@
-// Create a 16 x 16 grid of divs using flexbox
-
-// get grid size from user
-// return side of square (20 x 20) => 20
-// 20 = 960 / boxsize
-// boxsize = 960 / num
+// Create a 16 x 16 grid of divs using flexbox.
+// Mouseover event "draws" on screen by toggling off
+// class color to reveal color of container below.
 
 function createEtchBoxes(num) {
   let boxSize = 960 / num;
@@ -25,28 +22,25 @@ function createEtchBoxes(num) {
 
 function deleteEtchBoxes() {
   const container = document.querySelector(".container");
+  console.log("Should be deleting now.");
   while (container.firstChild) {
     container.removeChild(container.firstChild);
   }
 }
 
 function getGridSize() {
-  alert(`How big do you want each side to be? 
+  console.log("I'm here");
+  let num = prompt(`How big do you want each side to be? 
         The larger the number, the thinner the line you can draw. 
         Choose from 2 to 100.`);
+  if (num && 2 <= Number(num) <= 100) {
+    deleteEtchBoxes();
+    createEtchBoxes(Number(num));
+  }
 }
 
-const btn = document.querySelector("button");
-btn.addEventListener("click", () => {
-  alert(`How big do you want each side to be? 
-        The larger the number, the thinner the line you can draw. 
-        Choose from 2 to 100.`);
-});
+const btn = document.querySelector("#btn");
+btn.addEventListener("click", getGridSize);
 
+// Initial grid
 createEtchBoxes(16);
-
-// Figure out how to translate 16 x 16 into 960
-// Generate a prompt (with a button) that gets a number up to 100
-// to create a grid
-// Use the new number to remove the old container and create a new one
-// with the user info.
